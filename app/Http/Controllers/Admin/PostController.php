@@ -88,7 +88,7 @@ class PostController extends Controller
         //
         $data = $request->validate($this->validationArray);
         $post = POST::find($id);
-        $data['user_id'] = $post->id;
+        $data['user_id'] = $post->user->id;
         $data['post_date'] = $post->post_date;
         $post->update($data);
         return redirect()->route('admin.posts.index');

@@ -21,7 +21,6 @@ class PostsTableSeeder extends Seeder
             $newPost = new Post();
 
             $newPost->user_id = $faker->randomElement($users)->id;
-            $newPost->author = $faker->name();
             $newPost->title = $faker->sentence(3);
             $newPost->post_content = $faker->text(500);
             $newPost->post_image = $faker->imageUrl(360, 360, 'animals', true);
