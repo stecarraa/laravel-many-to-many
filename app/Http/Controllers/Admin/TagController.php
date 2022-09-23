@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Tag;
+use Illuminate\Validation\Rule;
 
 class TagController extends Controller
 {
@@ -26,7 +27,8 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+         $tag = new Tag();
+        return view('admin.tags.create', compact('tag'));
     }
 
     /**
@@ -37,7 +39,12 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tag = new Tag();
+        $data = $request->validate([
+            'name' => ['required','unique:tags,name', Rule::unique('tags')->ignore($tag->name,'name')],
+        ]);
+        $tag->create($data);
+        return redirect()->route('admin.tags.index');
     }
 
     /**
@@ -60,7 +67,8 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tag = Tag::findOrFail($id);
+        return view('admin.tags.edit', compact('tag'));
     }
 
     /**
@@ -72,8 +80,16 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+       //
+       $tag = Tag::findOrFail($id);
+       $data = $request->validate([
+           'name' => ['required','unique:tags,name', Rule::unique('tags')->ignore($tag->name,'name')],
+       ]);
+       $tag->update($data);
+      
+       return redirect()->route('admin.tags.index');
+   }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -81,8 +97,10 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tag $tag)
     {
-        //
+        
+        $tag->delete();
+        return redirect()->route('admin.tags.index');
     }
 }
