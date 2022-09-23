@@ -50,10 +50,16 @@
                             @endif
                         @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.posts.index') }}">Posts</a>
+                            <a class="nav-link" href="{{ route('admin.posts.index') }}">Posts index</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.posts.create') }}">Add a New POST</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.tags.index') }}">Tags index</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.tags.create') }}">Add a New TAG</a>
                         </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
