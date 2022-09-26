@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 { protected $validationArray = [
@@ -48,6 +49,7 @@ class PostController extends Controller
         $post = new Post();
         $data['user_id'] = Auth::user()->id;
         $data['post_date'] = new DateTime();
+        $data['uploaded_image'] = Storage::put('uploads', $data['uploaded_image']);
         $post->create($data);
         return redirect()->route('admin.posts.index');
     }
@@ -90,6 +92,7 @@ class PostController extends Controller
         $post = POST::find($id);
         $data['user_id'] = $post->user->id;
         $data['post_date'] = $post->post_date;
+        $data['uploaded_image'] = Storage::put('uploads', $data['uploaded_image']);
         $post->update($data);
         return redirect()->route('admin.posts.index');
     }

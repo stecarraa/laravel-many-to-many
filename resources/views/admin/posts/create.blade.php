@@ -8,8 +8,9 @@
 <div class="container d-flex p-5 text-center">
     <div class="row justify-content-center w-100">
         <div class="col-6">
-            <form action="{{ route('admin.posts.store', $post->id) }}" method="POST">
+            <form action="{{ route('admin.posts.store', $post->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+
                 @method('POST')
                 <!-- Name input -->
                 <div class="form-outline mb-4">
