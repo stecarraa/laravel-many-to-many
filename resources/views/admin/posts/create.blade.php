@@ -10,7 +10,6 @@
         <div class="col-6">
             <form action="{{ route('admin.posts.store', $post->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
-
                 @method('POST')
                 <!-- Name input -->
                 <div class="form-outline mb-4">
@@ -19,15 +18,20 @@
                 </div>
               
                 <!-- Email input -->
-                <div class="form-outline mb-4">
+                {{-- <div class="form-outline mb-4">
                   <input type="text" id="form4Example2" class="form-control" name="post_image" />
                   <label class="form-label" for="form4Example2">Image</label>
-                </div>
+                </div> --}}
               
                 <!-- Message input -->
                 <div class="form-outline mb-4">
                   <textarea class="form-control" id="form4Example3" rows="4" name="post_content"></textarea>
                   <label class="form-label" for="form4Example3">Description</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="file" id="form4Example2" class="form-control" name="uploaded_image" />
+                  <label class="form-label" for="form4Example2">Image</label>
                 </div>
               
               

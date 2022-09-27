@@ -10,6 +10,7 @@
         <div class="col-6">
             <div class="card">
                 <img class="card-img-top" src="{{$post->post_image}}" alt="Card image cap">
+                <img src="{{ asset('/storage/' . $post->uploaded_image) }}" alt="">
                 <div class="card-body">
                   <h5 class="card-title">{{$post->title}}</h5>
                   <p class="card-text">{{$post->post_content}}</p>
